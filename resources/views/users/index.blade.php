@@ -22,21 +22,37 @@
             <div class="col-md-6">
                 <div class="card" style="min-height: 800px">
                     {{-- マッチしましたとフラッシュメッセージで表示 --}}
-                    @if (session('flash_message'))
+                    {{-- @if (session('flash_message'))
                         <div class="flash_message bg-success text-center py-3 my-0">
                             {{ session('flash_message') }}
                         </div>
-                    @endif
+                    @endif --}}
+                    <script type="text/javascript">
+                        // {{--成功時--}}
+                        @if (session('msg_success'))
+                            $(function () {
+                                toastr.success('{{ session('msg_success') }}');
+                            });
+                        @endif
+
+                        // {{--失敗時--}}
+                        @if (session('msg_danger'))
+                            $(function () {
+                                toastr.danger('{{ session('msg_danger') }}');
+                            });
+                        @endif
+                    </script>
+
 
                     <div class="card-header bg-white">
                     {{-- if文でuserが存在する時としない時で表示を区別 --}}
                         @if (is_null($user))
                             <p class="text-center my-auto">あなたの周りにユーザーはいません。</p>
                         @else
-                            名前:{{ $user->name }}
+                            {{-- 名前:{{ $user->name }} --}}
                         @endif
                     </div>
-                    
+
                     <div class="card-body">
                         {{-- 指定する論理式がtrueかfalseと評価された場合に、ビューを@includeする。 --}}
                         @includeWhen(isset($user), 'users.matching_form')

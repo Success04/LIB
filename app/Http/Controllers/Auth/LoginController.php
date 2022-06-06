@@ -37,4 +37,16 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    /**
+     * ログインした時のリダイレクト先
+     * Where to redirect users after login.
+     *
+     * @var string
+     */
+    // protected $redirectTo = '/home';
+    protected function redirectTo() {
+        session()->flash('msg_success', 'ログインしました');
+        return '/users/index';
+    }
 }

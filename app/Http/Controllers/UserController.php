@@ -48,7 +48,7 @@ class UserController extends Controller
             //その相手のユーザーのis_likeもtrueなら
             if ($is_like_auth) {
                 //true同士なら、フラッシュメッセージをつけてメイン画面にリターン
-                return redirect()->route('users.index')->with('flash_message', 'マッチしました');
+                return redirect()->route('users.index')->with('msg_success', 'マッチしました');
             }
         }
         //falseなら、そのままメイン画面にリターン
@@ -62,16 +62,15 @@ class UserController extends Controller
     {
         $auth = User::find(Auth::id());
         //matches()はリレーションのメソッドです。
-        $users = $auth->matches()->orderBy('id','asc')->get();
+        $users = $auth->matches()->latest()->get();
         return view('users.matches', compact('users'));
     }
 
     //１人のマッチング相手の詳細ページ
-
     public function matches_show($num)
     {
         $auth = User::find(Auth::id());
-        $match_users = $auth->matches()->orderBy('id', 'asc')->get()->collect();
+        $match_users = $auth->matches()->latest()->get()->collect();
         $main_user = $match_users[$num];
         $count = $match_users->count();
         $prev = $num - 1 < 0 ? $num : $num - 1;
@@ -87,8 +86,6 @@ class UserController extends Controller
     {
         $is_match_user=$user->to_users()->where('from_user_id',Auth::id())->exists();
         if ($is_match_user) {
-            //get_room_messages()はリレーションのメソッド。
-            //loadCountでリレーション先の個数もリレーションで取得できる。
             $user = $user->loadCount('get_room_messages');
             return view('users.room', compact('user'));
         }
@@ -110,5 +107,63 @@ class UserController extends Controller
     {
         $messages = $user->get_room_messages()->get();
         return $messages;
+    }
+
+    /**
+     * プロフィール編集画面表示
+     * @return View プロフィール編集画面
+     */
+    public function profileShow()
+    {
+        $user = Auth::user();
+        return view('users.profile', ['user' => $user]);
+    }
+
+    /**
+     * プロフィール編集機能（ユーザー名、メールアドレス）
+     * @param Request $request
+     * @return Redirect 一覧ページ-メッセージ（プロフィール更新完了）
+     */
+    public function profileUpdate(Request $request, User $user)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => ['required', 'string', 'email', 'max:255'/* , Rule::unique('users')->ignore(Auth::id()) */],
+        ]);
+
+        try {
+            $user = Auth::user();
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->save();
+
+        } catch (\Exception $e) {
+            return back()->with('msg_danger', 'プロフィールの更新に失敗しました')->withInput();
+        }
+
+        return redirect()->route('users.index')->with('msg_success', 'プロフィールの更新が完了しました');
+    }
+
+    /**
+     * パスワード編集機能
+     * @param Request $request
+     * @return Redirect 一覧ページ-メッセージ（パスワード更新完了）
+     */
+    public function passwordUpdate(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|string|min:8|confirmed',
+        ]);
+
+        try {
+            $user = Auth::user();
+            $user->password = bcrypt($request->input('password'));
+            $user->save();
+
+        } catch (\Exception $e) {
+            return back()->with('msg_danger', 'パスワードの更新に失敗しました')->withInput();
+        }
+
+        return redirect()->route('users.index')->with('msg_success', 'パスワードの更新が完了しました');
     }
 }

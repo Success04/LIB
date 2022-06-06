@@ -12,7 +12,6 @@
                     <p class="card-text">{{ $main_user->email }}</p>
 
                     <div class="d-flex flex-column">
-
                         <div class="d-flex justify-content-center flex-wrap order-md-2">
                             @foreach ($match_users as $key => $user)
                                 <a class="btn border-primary mb-2 @if ($num == $key) btn-primary  @endif"

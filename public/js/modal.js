@@ -1,0 +1,3 @@
+$(function () {
+    $('#exampleModal').modal();
+});
