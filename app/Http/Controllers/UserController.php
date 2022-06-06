@@ -89,7 +89,6 @@ class UserController extends Controller
             $user = $user->loadCount('get_room_messages');
             return view('users.room', compact('user'));
         }
-        return  redirect()->route('users.matches');
     }
 
     public function store_message(Request $request, User $user)

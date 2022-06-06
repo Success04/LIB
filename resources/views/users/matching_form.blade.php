@@ -15,8 +15,8 @@
 
 <div class="img border rounded mx-auto text-center py-2" style="">
     {{-- ユーザーの画像 --}}
-    {{-- <img src="{{ asset($user->img_url) }}" alt="" class=""
-        style="width:350px;height:400px;object-fit:cover;object-position:center;"> --}}
+    <img src="{{ asset($user->img_url) }}" alt="" class=""
+        style="width:350px;height:400px;object-fit:cover;object-position:center;">
     <h2>名前:{{ $user->name }}</h2>
     <h3></h3>
 </div>
