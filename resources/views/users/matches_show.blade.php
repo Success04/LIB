@@ -25,7 +25,7 @@
 
                     </div>
                     <div class="mt-3">
-                        <a href="{{ route('users.room', $main_user->id) }}" class="btn btn-primary">連絡をとる</a>
+                        <a href="{{ route('users.room', $main_user->id) }}" class="btn btn-primary">メッセージを送る</a>
                         <a href="{{ route('users.matches') }}" class="btn btn-primary">戻る</a>
                     </div>
 

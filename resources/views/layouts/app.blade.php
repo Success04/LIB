@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Love is blind') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -50,7 +50,7 @@
                             <li class="nav-item">
                                 {{-- LIB Logoでindex画面のリンクになります。 --}}
                                 <a class="navbar-brand" href="{{ url('/welcome') }}">
-                                    welcome
+                                    ようこそ
                                 </a>
                             </li>
                         @endguest
@@ -80,7 +80,7 @@
 
                             {{-- プロフィール編集画面 --}}
                             <li class="nav-item">
-                                {{-- <a class="nav-link" href="{{ route('users.profile') }}"> --}}
+                                <a class="nav-link" href="{{ route('users.profile') }}">
                                     <i class="fa fa-cog"></i>
                                 </a>
                             </li>
@@ -91,13 +91,13 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('会員登録') }}</a>
                                 </li>
                             @endif
                         @endguest
