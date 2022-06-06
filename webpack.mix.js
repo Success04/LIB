@@ -14,6 +14,7 @@ const mix = require('laravel-mix');
 mix.setResourceRoot('../');
 
 mix.js('resources/js/app.js', 'public/js')
+    .css('resources/css/room.css', 'public/css')
     .sass('resources/sass/app.scss', 'public/css')
     .version()
     .sourceMaps();

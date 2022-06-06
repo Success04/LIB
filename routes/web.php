@@ -15,9 +15,9 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 //middleware(['auth'])
 Route::middleware(['auth'])->group(function () {
-    //メイン画面 相手を表示しlikes or unlikes ボタンを設置する。
+    //メイン画面 相手を表示しlikes or unLikes ボタンを設置する。
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    //likes or unlikesメソッドをswipesに保存するメソッド
+    //likes or unLikesメソッドをswipesに保存するメソッド
     Route::post('/users/{user}', [UserController::class, 'store'])->name('users.store');
     //マッチしたユーザー一覧を表示する。
     Route::get('/users/matches', [UserController::class, 'matches'])->name('users.matches');
@@ -25,6 +25,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/users/matches/{num}', [UserController::class, 'matches_show'])->name('users.matches_show');
     //users.room(マッチングしたユーザーとチャットするルート）
     Route::get('/users/room/{user}', [UserController::class, 'room'])->name('users.room');
+    //ユーザーとの個人メッセージの取得メソッド
+    Route::get('/users/room/{user}/messages', [UserController::class, 'get_messages'])->name('get_messages');
+    //ユーザーとの個人メッセージの保存・イベントの発火メソッド
+    Route::post('/users/room/{user}/store', [UserController::class, 'store_message'])->name('store_message');
 });
 
 Route::get('logout', function ()

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Swipe;
+use App\Models\Chat;
+use App\Events\SendMessage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -65,7 +67,7 @@ class UserController extends Controller
     }
 
     //１人のマッチング相手の詳細ページ
-    
+
     public function matches_show($num)
     {
         $auth = User::find(Auth::id());
@@ -76,5 +78,37 @@ class UserController extends Controller
         $next = $num + 1 > $count - 1 ? $num : $num + 1;
 
         return view('users.matches_show', compact('match_users', 'main_user', 'prev', 'next', 'num'));
+    }
+
+    /**
+     * マッチしたユーザーのルーム画面
+     */
+    public function room(User $user)
+    {
+        $is_match_user=$user->to_users()->where('from_user_id',Auth::id())->exists();
+        if ($is_match_user) {
+            //get_room_messages()はリレーションのメソッド。
+            //loadCountでリレーション先の個数もリレーションで取得できる。
+            $user = $user->loadCount('get_room_messages');
+            return view('users.room', compact('user'));
+        }
+        return  redirect()->route('users.matches');
+    }
+
+    public function store_message(Request $request, User $user)
+    {
+        $message = e($request->message);
+        $chat = Chat::create(['message' => $message, 'from_user_id' => Auth::id(), 'to_user_id' => $user->id]);
+        broadcast(new SendMessage($chat))->toOthers();
+        return 'success';
+    }
+
+    /**
+     * messageを取得
+     */
+    public function get_messages(User $user)
+    {
+        $messages = $user->get_room_messages()->get();
+        return $messages;
     }
 }

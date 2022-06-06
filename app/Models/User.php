@@ -35,6 +35,20 @@ class User extends Authenticatable
         return $this->from_users()->wherePivot('is_like', true)->wherePivotIn('to_user_id', $ids);
     }
 
+    public function chats()
+    {
+        return $this->hasMany(Chat::class, 'from_user_id', 'id');
+    }
+
+
+    public function get_room_messages()
+    {
+        //userがauthにauthがuserに送ったメッセージを取得する必要がある。
+        return  $this->chats()->where('to_user_id', Auth::id())->orWhere(function ($q) {
+            $q->where('from_user_id', Auth::id())->where('to_user_id', $this->id);
+        });
+    }
+
     /**
      * The attributes that are mass assignable.
      *
