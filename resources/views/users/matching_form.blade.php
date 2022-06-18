@@ -15,10 +15,11 @@
 
 <div class="img border rounded mx-auto text-center py-2" style="">
     {{-- ユーザーの画像 --}}
-    <img src="{{ asset($user->img_url) }}" alt="" class=""
-        style="width:350px;height:400px;object-fit:cover;object-position:center;">
-    <h2>名前:{{ $user->name }}</h2>
-    <h3></h3>
+    {{-- <img src="{{ asset($user->img_url) }}" alt="" class=""
+        style="width:350px;height:400px;object-fit:cover;object-position:center;"> --}}
+    <h2>{{ $user->name }} 23</h2>
+    <h3>自己紹介</h3>
+    <h3>こんにちは！</h3>
 </div>
 
     <div class="row mt-1 justify-content-center align-items-center text-center" style="height:200px">

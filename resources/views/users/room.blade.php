@@ -16,7 +16,6 @@
                             </div>
                             <div class="user_info">
                                     <span>{{ $user->name }}</span>
-                                {{-- <p>message count : {{ $user->get_room_messages_count }}</p> --}}
                             </div>
                         </div>
                     </div>

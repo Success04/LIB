@@ -47,6 +47,7 @@ class LoginController extends Controller
     // protected $redirectTo = '/home';
     protected function redirectTo() {
         session()->flash('msg_success', 'ログインしました');
-        return '/users/index';
+        return '/users.index';
     }
+
 }

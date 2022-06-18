@@ -15,6 +15,9 @@
                                 <a href="{{ route('users.matches_show',$key) }}" class="ml-3" style="font-size:16px;">
                                     {{ $user->name }}
                                 </a>
+                                <a href="{{ route('users.room',$user['id']) }}" class="float-end btn btn-primary">
+                                    メッセージを送る
+                                </a>
                             </div>
                         @endforeach
                     </div>

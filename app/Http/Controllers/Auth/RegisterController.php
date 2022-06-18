@@ -27,6 +27,9 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'image' => ['required','file','mimes:jpeg,png,jpg,bmb', 'max:1080'],
+            'gender' => ['required', 'string', 'max:11'],
+            'age' => ['required', 'string', 'max:11'],
+            'intro' => ['required', 'text', 'max:255'],
         ]);
     }
     //2.画像をフォルダ(storage\app\public\images)に保存する。
@@ -50,6 +53,9 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             //取得した画像リンクのパスをimg_urlに保存する。
             'img_url'  => $fullFilePath,
+            'gender' => $data['gender'],
+            'age' => $data['age'],
+            'intro' => $data['intro'],
         ]);
     }
 }

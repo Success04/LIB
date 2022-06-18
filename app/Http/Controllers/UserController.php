@@ -63,7 +63,17 @@ class UserController extends Controller
         $auth = User::find(Auth::id());
         //matches()はリレーションのメソッドです。
         $users = $auth->matches()->latest()->get();
-        return view('users.matches', compact('users'));
+        // foreach ($users as $user) {
+        //     $messages[] = $auth->room($user['id'])->latest()->get();
+        // }
+        // dd($messages);
+        return view('users.matches', compact('users',/*  'messages' */));
+    }
+
+    private function messages () {
+        $auth = Chats::find(Auth::from_user_id() || Auth::to_user_id());
+        //一番最後に送られたメッセージを取得
+        return $auth;
     }
 
     //１人のマッチング相手の詳細ページ
@@ -128,12 +138,18 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => ['required', 'string', 'email', 'max:255'/* , Rule::unique('users')->ignore(Auth::id()) */],
+            'gender' => ['required', 'string', 'gender', 'max:255'],
+            'age' => ['required', 'string', 'age', 'max:255'],
+            'intro' => ['required', 'string', 'intro', 'max:255'],
         ]);
 
         try {
             $user = Auth::user();
             $user->name = $request->input('name');
             $user->email = $request->input('email');
+            $user->age = $request->input('age');
+            $user->gender = $request->input('gender');
+            $user->intro = $request->input('intro');
             $user->save();
 
         } catch (\Exception $e) {

@@ -59,6 +59,9 @@ class User extends Authenticatable
         'email',
         'password',
         'img_url',
+        'age',
+        'gender',
+        'intro',
     ];
 
     /**
