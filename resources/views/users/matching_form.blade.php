@@ -17,9 +17,13 @@
     {{-- ユーザーの画像 --}}
     {{-- <img src="{{ asset($user->img_url) }}" alt="" class=""
         style="width:350px;height:400px;object-fit:cover;object-position:center;"> --}}
-    <h2>{{ $user->name }} 23</h2>
+    <h2>{{ $user->name }}</h2>
+    <h3>年齢</h3>
+    <h3>{{ $user->age }}</h3>
+    <h3>性別</h3>
+    <h3>{{ $user->gender }}</h3>
     <h3>自己紹介</h3>
-    <h3>こんにちは！</h3>
+    <h3>{{ $user->intro }} </h3>
 </div>
 
     <div class="row mt-1 justify-content-center align-items-center text-center" style="height:200px">

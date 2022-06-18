@@ -20,17 +20,17 @@
                 </div>
                 <div class="form-group pt-2">
                     {{Form::label('gender','性別')}}
-                    {{Form::email('gender', $user->gender, ['class' => 'form-control', 'id' =>'gender'])}}
+                    {{Form::text('gender', $user->gender, ['class' => 'form-control', 'id' =>'gender'])}}
                     <span class="text-danger">{{$errors->first('gender')}}</span>
                 </div>
                 <div class="form-group pt-2">
                     {{Form::label('age','年齢')}}
-                    {{Form::age('age', $user->age, ['class' => 'form-control', 'id' =>'age'])}}
+                    {{Form::text('age', $user->age, ['class' => 'form-control', 'id' =>'age'])}}
                     <span class="text-danger">{{$errors->first('age')}}</span>
                 </div>
                 <div class="form-group pt-2">
                     {{Form::label('intro','自己紹介')}}
-                    {{Form::intro('intro', $user->intro, ['class' => 'form-control', 'id' =>'intro'])}}
+                    {{Form::textarea('intro', $user->intro, ['class' => 'form-control', 'id' =>'intro'])}}
                     <span class="text-danger">{{$errors->first('intro')}}</span>
                 </div>
                 <div class="form-group pt-2">

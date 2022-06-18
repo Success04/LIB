@@ -15,10 +15,9 @@ return new class extends Migration
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Schema::table('users', function (Blueprint $table) {
-            $table->string('img_url');
-            $table->string('gender')->nullable();
-            $table->string('age')->nullable();
-            $table->text('intro')->nullable();
+            $table->integer('age')->nullable(true)->change();
+            $table->string('gender')->nullable(true)->change();
+            $table->text('introduction')->nullable(true)->change();
         });
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
@@ -32,10 +31,9 @@ return new class extends Migration
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('img_url');
-            $table->dropColumn('gender')->nullable(false);
-            $table->dropColumn('age')->nullable(false);
-            $table->dropColumn('intro')->nullable(false);
+            $table->dropColumn('age')->nullable(false)->change();
+            $table->dropColumn('gender')->nullable(false)->change();
+            $table->dropColumn('introduction')->nullable(false)->change();
         });
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

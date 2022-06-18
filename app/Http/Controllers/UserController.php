@@ -138,9 +138,9 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => ['required', 'string', 'email', 'max:255'/* , Rule::unique('users')->ignore(Auth::id()) */],
-            'gender' => ['required', 'string', 'gender', 'max:255'],
-            'age' => ['required', 'string', 'age', 'max:255'],
-            'intro' => ['required', 'string', 'intro', 'max:255'],
+            'gender' => 'required|string|max:255',
+            'age' => 'required|string|max:255',
+            'intro' => 'required|string|max:255',
         ]);
 
         try {

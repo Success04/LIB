@@ -78,7 +78,7 @@
                             </div>
                         </div>
 
-                        {{-- <div class="form-group row">
+                        {{-- <div class="row mb-3">
                             <label for="gender" class="col-md-4 col-form-label text-md-end">{{ __('性別') }}</label>
 
                             <div class="col-md-6">
@@ -92,7 +92,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="row mb-3">
                             <label for="age" class="col-md-4 col-form-label text-md-end">{{ __('年齢') }}</label>
 
                             <div class="col-md-6">
@@ -106,7 +106,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
+                        <div class="row mb-3">
                             <label for="intro" class="col-md-4 col-form-label text-md-end">{{ __('自己紹介') }}</label>
 
                             <div class="col-md-6">
