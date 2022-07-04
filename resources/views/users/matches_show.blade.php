@@ -9,7 +9,10 @@
                     style="height:400px;width:300px;object-fit:cover;object-position:center;">
                 <div class="card-body">
                     <h5 class="card-title">{{ $main_user->name }}</h5>
-                    <p class="card-text">{{ $main_user->email }}</p>
+                    <p class="card-text">{{ $main_user->age }}歳</p>
+                    <p class="card-text">{{ $main_user->gender }}</p>
+                    <p class="card-text">自己紹介</p>
+                    <p class="card-text">{{ $main_user->intro }}</p>
 
                     <div class="d-flex flex-column">
                         <div class="d-flex justify-content-center flex-wrap order-md-2">

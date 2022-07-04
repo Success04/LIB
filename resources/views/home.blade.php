@@ -20,5 +20,5 @@
         </div>
     </div>
 </div> --}}
-<img src="https://scontent-nrt1-1.xx.fbcdn.net/v/t1.6435-9/66816500_735739803510898_2349457564585951232_n.png?_nc_cat=106&ccb=1-7&_nc_sid=dd9801&_nc_ohc=tN3-q2A7NiIAX926gDa&_nc_ht=scontent-nrt1-1.xx&oh=00_AT8Wu_r125FZ9uHbk1q-gOLQ8HoXdTk4LW9ptkZ0spKHgA&oe=62BC17CA" style="display: block; margin: auto; width: 50%;">
+<img src="https://tshop.r10s.jp/auc-hafen/cabinet/items/05011598/imgrc0072388177.jpg?fitin=720%3A720" style="display: block; margin: auto; width: 50%;">
 @endsection
